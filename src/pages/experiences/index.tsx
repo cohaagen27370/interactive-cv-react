@@ -1,3 +1,3 @@
-export function ExperiencesPage(props: any) {
+export function ExperiencesPage() {
   return <span>Experiences</span>;
 }

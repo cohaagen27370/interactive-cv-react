@@ -1,0 +1,48 @@
+.transition-group-wrapper {
+  position: relative; /* Pour que les pages absolues se positionnent correctement */
+  min-height: calc(
+    100vh - 80px
+  ); /* Ajustez selon la hauteur de votre navbar/footer */
+}
+
+.page-wrapper {
+  position: absolute; /* Place les pages l'une sur l'autre pendant la transition */
+  top: 0;
+  left: 0;
+  width: 1000px;
+  max-width: 1000px;
+  padding-top: 20px; /* Espace si la navbar est fixe en haut */
+  box-sizing: border-box; /* Inclut le padding dans la largeur/hauteur */
+  background-color: white; /* Important pour cacher la page dessous */
+}
+
+.page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* Classes CSS pour la transition de page */
+
+/* État d'entrée */
+.page-fade-enter {
+  opacity: 0;
+}
+
+.page-fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* État de sortie */
+.page-fade-exit {
+  opacity: 1;
+}
+
+.page-fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}

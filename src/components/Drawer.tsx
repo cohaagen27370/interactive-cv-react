@@ -12,14 +12,16 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { ListItemCustom } from './ListItemCustom';
-import { BusinessCenter, CardMembership, Category, Difference, Portrait, School } from '@mui/icons-material';
+import {
+  BusinessCenter,
+  CardMembership,
+  Category,
+  Difference,
+  Portrait,
+  School,
+} from '@mui/icons-material';
+import { usePage } from '../pages/layout/page-context';
 
 const drawerWidth = 240;
 
@@ -80,30 +82,30 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
-  ({ theme }) => ({
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    variants: [
-      {
-        props: ({ open }) => open,
-        style: {
-          ...openedMixin(theme),
-          '& .MuiDrawer-paper': openedMixin(theme),
-        },
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme }) => ({
+  width: drawerWidth,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  variants: [
+    {
+      props: ({ open }) => open,
+      style: {
+        ...openedMixin(theme),
+        '& .MuiDrawer-paper': openedMixin(theme),
       },
-      {
-        props: ({ open }) => !open,
-        style: {
-          ...closedMixin(theme),
-          '& .MuiDrawer-paper': closedMixin(theme),
-        },
+    },
+    {
+      props: ({ open }) => !open,
+      style: {
+        ...closedMixin(theme),
+        '& .MuiDrawer-paper': closedMixin(theme),
       },
-    ],
-  }),
-);
+    },
+  ],
+}));
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -144,18 +146,52 @@ export default function MiniDrawer() {
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </DrawerHeader>
         <Divider />
-            <List>                  
-                <ListItemCustom label={'Présentation'} route={'/'} isOpen={open} icon={<Portrait />} />
-                <ListItemCustom label={'Ma formation'} route={'/trainings'} isOpen={open} icon={<CardMembership />} />
-                <ListItemCustom route={'/experiences'} label={'Mes expériences'} isOpen={open} icon={<BusinessCenter />} />
-                <ListItemCustom route={'/skills'} label={'Mes savoirs-faire'} isOpen={open} icon={<Category />} />
-                <ListItemCustom route={'/being'} label={'Mes savoirs-être'} isOpen={open} icon={<Difference />} />
-                <ListItemCustom route={'/monitoring'} label={'Veille techno & IA'} isOpen={open} icon={<School />} />    
-            </List>
+        <List>
+          <ListItemCustom
+            label={'Présentation'}
+            route={'/'}
+            isOpen={open}
+            icon={<Portrait />}
+          />
+          <ListItemCustom
+            label={'Ma formation'}
+            route={'/trainings'}
+            isOpen={open}
+            icon={<CardMembership />}
+          />
+          <ListItemCustom
+            route={'/experiences'}
+            label={'Mes expériences'}
+            isOpen={open}
+            icon={<BusinessCenter />}
+          />
+          <ListItemCustom
+            route={'/skills'}
+            label={'Mes savoirs-faire'}
+            isOpen={open}
+            icon={<Category />}
+          />
+          <ListItemCustom
+            route={'/being'}
+            label={'Mes savoirs-être'}
+            isOpen={open}
+            icon={<Difference />}
+          />
+          <ListItemCustom
+            route={'/monitoring'}
+            label={'Veille techno & IA'}
+            isOpen={open}
+            icon={<School />}
+          />
+        </List>
         <Divider />
       </Drawer>
     </Box>
