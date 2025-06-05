@@ -25,7 +25,6 @@ export function PresentationPage() {
   ).toString();
 
   useEffect(() => {
-    // URL de votre fichier JSON distant
     const jsonUrl =
       'https://cohaagen.proxydns.com/services/datasCV/presentation.data.json';
 
@@ -34,7 +33,7 @@ export function PresentationPage() {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json(); // Convertit la réponse en objet JSON
+        return response.json();
       })
       .then((jsonData: Presentation) => {
         setData(jsonData);
@@ -61,7 +60,33 @@ export function PresentationPage() {
       spacing={5}
       justifyContent={'center'}
     >
-      <Card>
+      
+      <Card sx={{ display: 'flex' }}> 
+      <CardMedia
+        component="img"
+        sx={{ width: 151 }}
+        image="images/me-real.jpg"
+        alt="Live from space album cover"
+      />        
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <CardContent sx={{ flex: '1 0 auto' }}>
+            <Typography variant="h5" component="div">
+              Moi en quelques mots
+            </Typography>
+            <br />
+            <Typography
+              variant="body2"
+              dangerouslySetInnerHTML={{
+                __html: data?.description.replace('age', age),
+              }}
+            />
+        </CardContent>
+      </Box>
+    </Card>
+
+
+
+      {/* <Card>
         <CardMedia
           component="img"
           sx={{
@@ -100,7 +125,7 @@ export function PresentationPage() {
             />
           </CardContent>
         </Box>
-      </Card>
+      </Card> */}
 
       <Card style={{ flexGrow: 1 }}>
         <CardContent>

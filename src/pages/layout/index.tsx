@@ -17,14 +17,9 @@ import { TrainingPage } from '../trainings';
 import MenuIcon from '@mui/icons-material/Menu';
 import MiniDrawer from '../../components/Drawer';
 import { BasePage } from '../base';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { useRef } from 'react';
-import './layout.css';
 import { PageProvider } from './page-context';
 
 export function Layout() {
-  const location = useLocation();
-  const nodeRef = useRef(null);
 
   return (
     <PageProvider>
@@ -61,16 +56,6 @@ export function Layout() {
         >
           <MiniDrawer></MiniDrawer>
 
-          <TransitionGroup className="transition-group-wrapper">
-            <CSSTransition
-              key={location.pathname}
-              nodeRef={nodeRef}
-              timeout={300}
-              classNames="page-fade"
-              mountOnEnter={false}
-              unmountOnExit={true}
-            >
-              <div ref={nodeRef} className="page-wrapper">
                 <Routes>
                   <Route
                     path="/"
@@ -129,9 +114,6 @@ export function Layout() {
                     }
                   />
                 </Routes>
-              </div>
-            </CSSTransition>
-          </TransitionGroup>
         </Stack>
       </Stack>
     </PageProvider>
