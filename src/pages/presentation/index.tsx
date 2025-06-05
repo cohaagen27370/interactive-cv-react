@@ -12,7 +12,7 @@ import { differenceInYears } from 'date-fns';
 
 export function PresentationPage() {
   const [data, setData] = useState<Presentation | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   const age: string = differenceInYears(
@@ -75,11 +75,11 @@ export function PresentationPage() {
             </Typography>
             <br />
             <Typography
-              variant="body2"
-              dangerouslySetInnerHTML={{
-                __html: data?.description.replace('age', age),
-              }}
-            />
+              variant="body2">
+              <span dangerouslySetInnerHTML={{
+                __html: data!.description.replace('age', age),
+              }}></span>
+            </Typography>
         </CardContent>
       </Box>
     </Card>
@@ -134,14 +134,14 @@ export function PresentationPage() {
           </Typography>
           <br />
           <Typography
-            variant="body2"
-            dangerouslySetInnerHTML={{
-              __html: data?.profil.replace(
+            variant="body2">
+            <span dangerouslySetInnerHTML={{
+              __html: data!.profil.replace(
                 'anneesExperience',
                 anneesExperience,
               ),
-            }}
-          />
+            }}></span>
+          </Typography>
         </CardContent>
       </Card>
 

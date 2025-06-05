@@ -2,10 +2,10 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import { useEffect, useState } from "react";
 import type { HowTo } from "../../types";
 
-export function BeingPage(props: any) {
+export function BeingPage() {
 
     const [data, setData] = useState<HowTo | null>(null);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<Error | null>(null);
     const [loading, setLoading] = useState(true);
   
     const maxLength: number[] = Array.from({ length: 20 }, (_, i) => i);

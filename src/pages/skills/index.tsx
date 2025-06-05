@@ -6,7 +6,7 @@ import { Grid } from "@mui/material";
 export function SkillsPage() {
 
   const [data, setData] = useState<Array<Skill> | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

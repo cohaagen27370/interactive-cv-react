@@ -7,7 +7,7 @@ import {
   Typography,
   Button,
 } from '@mui/material';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { BeingPage } from '../being';
 import { ExperiencesPage } from '../experiences';
 import { MonitoringPage } from '../monitoring';

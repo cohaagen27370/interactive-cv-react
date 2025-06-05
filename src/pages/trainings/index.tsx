@@ -5,7 +5,7 @@ import { TrainingComponent } from "../trainings/components/training-component";
 
 export function TrainingPage() {
   const [data, setData] = useState<Array<Training> | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export function TrainingPage() {
         setData(jsonData.trainings as Array<Training>);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch((error: Error) => {
         setError(error);
         setLoading(false);
       });

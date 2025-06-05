@@ -5,7 +5,7 @@ import { Grid } from '@mui/material';
 
 export function ExperiencesPage() {
   const [data, setData] = useState<Array<Experience> | null>(null);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
