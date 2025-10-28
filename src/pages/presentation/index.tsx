@@ -26,7 +26,7 @@ export function PresentationPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://cohaagen.proxydns.com/services/datasCV/presentation.data.json';
+      'https://statics.proxydns.com/presentation.data.json';
 
     fetch(jsonUrl)
       .then((response) => {

@@ -10,7 +10,7 @@ export function ExperiencesPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://cohaagen.proxydns.com/services/datasCV/experiences.data.json';
+      'https://statics.proxydns.com/experiences.data.json';
 
     fetch(jsonUrl)
       .then((response) => {

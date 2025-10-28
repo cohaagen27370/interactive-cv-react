@@ -12,7 +12,7 @@ export function BeingPage() {
   
     useEffect(() => {
       const jsonUrl =
-        'https://cohaagen.proxydns.com/services/datasCV/howto.data.json';
+        'https://statics.proxydns.com/howto.data.json';
   
       fetch(jsonUrl)
         .then((response) => {

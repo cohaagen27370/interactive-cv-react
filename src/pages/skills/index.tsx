@@ -11,7 +11,7 @@ export function SkillsPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://cohaagen.proxydns.com/services/datasCV/skills.data.json';
+      'https://statics.proxydns.com/skills.data.json';
 
     fetch(jsonUrl)
       .then((response) => {

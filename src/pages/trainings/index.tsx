@@ -10,7 +10,7 @@ export function TrainingPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://cohaagen.proxydns.com/services/datasCV/trainings.data.json';
+      'https://statics.proxydns.com/trainings.data.json';
 
     fetch(jsonUrl)
       .then((response) => {
