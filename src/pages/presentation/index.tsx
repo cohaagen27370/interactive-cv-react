@@ -26,7 +26,7 @@ export function PresentationPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://statics.proxydns.com/presentation.data.json';
+      'https://cv-statics-714653790575.us-east1.run.app/presentation.data.json';
 
     fetch(jsonUrl)
       .then((response) => {
@@ -60,31 +60,29 @@ export function PresentationPage() {
       spacing={5}
       justifyContent={'center'}
     >
-      
-      <Card sx={{ display: 'flex' }}> 
-      <CardMedia
-        component="img"
-        sx={{ width: 151 }}
-        image="images/me-real.jpg"
-        alt="Live from space album cover"
-      />        
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <CardContent sx={{ flex: '1 0 auto' }}>
+      <Card sx={{ display: 'flex' }}>
+        <CardMedia
+          component="img"
+          sx={{ width: 151 }}
+          image="images/me-real.jpg"
+          alt="Live from space album cover"
+        />
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography variant="h5" component="div">
               Moi en quelques mots
             </Typography>
             <br />
-            <Typography
-              variant="body2">
-              <span dangerouslySetInnerHTML={{
-                __html: data!.description.replace('age', age),
-              }}></span>
+            <Typography variant="body2">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: data!.description.replace('age', age),
+                }}
+              ></span>
             </Typography>
-        </CardContent>
-      </Box>
-    </Card>
-
-
+          </CardContent>
+        </Box>
+      </Card>
 
       {/* <Card>
         <CardMedia
@@ -133,14 +131,15 @@ export function PresentationPage() {
             Mon profil
           </Typography>
           <br />
-          <Typography
-            variant="body2">
-            <span dangerouslySetInnerHTML={{
-              __html: data!.profil.replace(
-                'anneesExperience',
-                anneesExperience,
-              ),
-            }}></span>
+          <Typography variant="body2">
+            <span
+              dangerouslySetInnerHTML={{
+                __html: data!.profil.replace(
+                  'anneesExperience',
+                  anneesExperience,
+                ),
+              }}
+            ></span>
           </Typography>
         </CardContent>
       </Card>

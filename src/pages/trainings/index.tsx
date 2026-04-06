@@ -1,7 +1,7 @@
-import { Grid } from "@mui/material";
-import { useState, useEffect } from "react";
-import type { Training } from "../../types";
-import { TrainingComponent } from "../trainings/components/training-component";
+import { Grid } from '@mui/material';
+import { useState, useEffect } from 'react';
+import type { Training } from '../../types';
+import { TrainingComponent } from '../trainings/components/training-component';
 
 export function TrainingPage() {
   const [data, setData] = useState<Array<Training> | null>(null);
@@ -10,7 +10,7 @@ export function TrainingPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://statics.proxydns.com/trainings.data.json';
+      'https://cv-statics-714653790575.us-east1.run.app/trainings.data.json';
 
     fetch(jsonUrl)
       .then((response) => {
@@ -28,7 +28,7 @@ export function TrainingPage() {
         setLoading(false);
       });
   }, []);
-  
+
   if (loading) {
     return <div>Chargement des données...</div>;
   }
@@ -37,7 +37,14 @@ export function TrainingPage() {
     return <div>Erreur : {error.message}</div>;
   }
 
-  return <Grid container spacing={2}>
-    {data && (data.map(element => <Grid size={{ xl: 6, lg: 12, md: 12, sm: 12, xs: 12 }}><TrainingComponent data={element} /></Grid>))}
-  </Grid>
+  return (
+    <Grid container spacing={2}>
+      {data &&
+        data.map((element) => (
+          <Grid size={{ xl: 6, lg: 12, md: 12, sm: 12, xs: 12 }}>
+            <TrainingComponent data={element} />
+          </Grid>
+        ))}
+    </Grid>
+  );
 }

@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
-import type { Skill } from "../../types";
-import { SkillComponent } from "./components/skill-component";
-import { Grid } from "@mui/material";
+import { useState, useEffect } from 'react';
+import type { Skill } from '../../types';
+import { SkillComponent } from './components/skill-component';
+import { Grid } from '@mui/material';
 
 export function SkillsPage() {
-
   const [data, setData] = useState<Array<Skill> | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const jsonUrl =
-      'https://statics.proxydns.com/skills.data.json';
+      'https://cv-statics-714653790575.us-east1.run.app/skills.data.json';
 
     fetch(jsonUrl)
       .then((response) => {
@@ -28,8 +27,8 @@ export function SkillsPage() {
         setError(error);
         setLoading(false);
       });
-  }, []); 
-  
+  }, []);
+
   if (loading) {
     return <div>Chargement des données...</div>;
   }
@@ -38,8 +37,14 @@ export function SkillsPage() {
     return <div>Erreur : {error.message}</div>;
   }
 
-  return <Grid container spacing={2}>
-    {data && (data.map(element => <Grid size={{ xl:4, lg:6 ,md:6, sm:12, xs:12 }}><SkillComponent data={element} /></Grid>))}    
-  </Grid>
-  ;
+  return (
+    <Grid container spacing={2}>
+      {data &&
+        data.map((element) => (
+          <Grid size={{ xl: 4, lg: 6, md: 6, sm: 12, xs: 12 }}>
+            <SkillComponent data={element} />
+          </Grid>
+        ))}
+    </Grid>
+  );
 }

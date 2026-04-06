@@ -1,36 +1,41 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import { useEffect, useState } from "react";
-import type { HowTo } from "../../types";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@mui/material';
+import { useEffect, useState } from 'react';
+import type { HowTo } from '../../types';
 
 export function BeingPage() {
+  const [data, setData] = useState<HowTo | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    const [data, setData] = useState<HowTo | null>(null);
-    const [error, setError] = useState<Error | null>(null);
-    const [loading, setLoading] = useState(true);
-  
-    const maxLength: number[] = Array.from({ length: 20 }, (_, i) => i);
-  
-    useEffect(() => {
-      const jsonUrl =
-        'https://statics.proxydns.com/howto.data.json';
-  
-      fetch(jsonUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((jsonData) => {
-          setData(jsonData as HowTo);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError(error);
-          setLoading(false);
-        });
-    }, []);
+  const maxLength: number[] = Array.from({ length: 20 }, (_, i) => i);
 
+  useEffect(() => {
+    const jsonUrl =
+      'https://cv-statics-714653790575.us-east1.run.app/howto.data.json';
+
+    fetch(jsonUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((jsonData) => {
+        setData(jsonData as HowTo);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
 
   if (loading) {
     return <div>Chargement des données...</div>;
@@ -39,33 +44,30 @@ export function BeingPage() {
   if (error) {
     return <div>Erreur : {error.message}</div>;
   }
-  
-  
-  return <TableContainer><Table>
-            <TableHead>
+
+  return (
+    <TableContainer>
+      <Table>
+        <TableHead>
           <TableRow>
             <TableCell>Qualités</TableCell>
-        <TableCell>Défauts</TableCell>
-      </TableRow>
-    </TableHead>
+            <TableCell>Défauts</TableCell>
+          </TableRow>
+        </TableHead>
 
-    <TableBody>
-
-      {data && maxLength.map((element) =>
-        
-        (data.defaults[element] || data.qualities[element]) && 
-          <TableRow>
-            <TableCell>
-              {data.qualities[element]}
-            </TableCell>            
-            <TableCell>
-              {data.defaults[element]}
-            </TableCell>
-        </TableRow>        
-        )}
-
-
+        <TableBody>
+          {data &&
+            maxLength.map(
+              (element) =>
+                (data.defaults[element] || data.qualities[element]) && (
+                  <TableRow>
+                    <TableCell>{data.qualities[element]}</TableCell>
+                    <TableCell>{data.defaults[element]}</TableCell>
+                  </TableRow>
+                ),
+            )}
         </TableBody>
-  </Table></TableContainer>;
-
+      </Table>
+    </TableContainer>
+  );
 }

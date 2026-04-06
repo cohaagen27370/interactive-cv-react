@@ -10,7 +10,7 @@ export function ExperiencesPage() {
 
   useEffect(() => {
     const jsonUrl =
-      'https://statics.proxydns.com/experiences.data.json';
+      'https://cv-statics-714653790575.us-east1.run.app/experiences.data.json';
 
     fetch(jsonUrl)
       .then((response) => {
@@ -28,7 +28,7 @@ export function ExperiencesPage() {
         setLoading(false);
       });
   }, []);
-  
+
   if (loading) {
     return <div>Chargement des données...</div>;
   }
@@ -37,7 +37,14 @@ export function ExperiencesPage() {
     return <div>Erreur : {error.message}</div>;
   }
 
-  return <Grid container spacing={2}>
-    {data && (data.map(element => <Grid size={{ xl: 4, lg: 6, md: 6, sm: 12, xs: 12 }}><ExperienceComponent data={element} /></Grid>))}
-  </Grid>
+  return (
+    <Grid container spacing={2}>
+      {data &&
+        data.map((element) => (
+          <Grid size={{ xl: 4, lg: 6, md: 6, sm: 12, xs: 12 }}>
+            <ExperienceComponent data={element} />
+          </Grid>
+        ))}
+    </Grid>
+  );
 }
